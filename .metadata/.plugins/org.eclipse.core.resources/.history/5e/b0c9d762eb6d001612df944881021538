@@ -1,0 +1,5 @@
+package gameValues
+
+class VictoryValue {
+
+}

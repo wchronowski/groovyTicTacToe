@@ -1,0 +1,11 @@
+package gameStatusTest;
+import org.junit.Test;
+
+public class CheckGameTest {
+
+	@Test
+	public void test() {
+		
+	}
+
+}

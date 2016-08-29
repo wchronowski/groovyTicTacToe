@@ -1,0 +1,37 @@
+package gameStatus
+import gameValues.*
+
+class CheckGame {
+	def ticTacToeBoard
+	CheckGame(ticTacToeBoard) {
+		this.ticTacToeBoard = ticTacToeBoard
+	}
+	
+	public CurrentGameStatus() {
+		if(RowVictory(BoardValue.X))
+			VictoryValue.X
+		else if(RowVictory(BoardValue.O) || ColVictory(BoardValue.O))
+			VictoryValue.O
+		else
+			VictoryValue.ONGOING
+	}
+	
+	private CheckForColVictory (boradValue) {
+		this.ticTacToeBoard[0][0].is(boradValue) &&
+		this.ticTacToeBoard[1][0].is(boradValue) &&
+		this.ticTacToeBoard[2][0].is(boradValue)
+	}
+	
+	private RowVictory(boradValue) {
+		CheckForRowVictory(boradValue, 0) ||
+		CheckForRowVictory(boradValue, 1) ||
+		CheckForRowVictory(boradValue, 2)
+	}
+	
+	private CheckForRowVictory(boradValue, rowIndex) {
+		this.ticTacToeBoard[rowIndex][0].is(boradValue) &&
+		this.ticTacToeBoard[rowIndex][1].is(boradValue) &&
+		this.ticTacToeBoard[rowIndex][2].is(boradValue)
+	}
+	
+}

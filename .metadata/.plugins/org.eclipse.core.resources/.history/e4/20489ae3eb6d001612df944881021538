@@ -1,0 +1,17 @@
+package gameStatusTest;
+import org.junit.Test;
+import gameValues.*
+
+public class CheckGameTest {
+
+	@Test
+	public void New_Board_No_Winner() {
+		def ticTacToeBoard = [[ BoardValue.NONE, BoardValue.NONE, BoardValue.NONE ],
+						     [ BoardValue.NONE, BoardValue.NONE, BoardValue.NONE ],
+						     [ BoardValue.NONE, BoardValue.NONE, BoardValue.NONE ]]
+		
+		
+		
+	}
+
+}

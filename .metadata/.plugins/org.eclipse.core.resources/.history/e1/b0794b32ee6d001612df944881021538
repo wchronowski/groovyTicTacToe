@@ -1,0 +1,5 @@
+package gameValues
+
+enum VictoryValue {
+	AI, HUMAN, TIE, ONGOING
+}

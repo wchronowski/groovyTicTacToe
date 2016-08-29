@@ -1,0 +1,13 @@
+package gameStatusTest;
+import org.junit.Test;
+import symbols.PossibileBoardValues
+
+public class CheckGameTest {
+
+	@Test
+	public void test() {
+		def ticTacToeBoard = NONE
+		
+	}
+
+}

@@ -1,0 +1,21 @@
+package gameStatus
+import gameValues.VictoryValue
+
+class CheckGame {
+	def ticTacToeBoard
+	CheckGame(ticTacToeBoard) {
+		this.ticTacToeBoard = ticTacToeBoard
+	}
+	
+	public CurrentGameStatus() {
+		def gameStatus = RowVictory(BoardValue.X) 
+						 ? VictoryValue.X : VictoryValue.ONGOING
+		gameStatus
+	}
+	
+	private RowVictory(boradValue) {
+		//this.ticTacToeBoard[0][0].is(boradValue)
+		false
+	}
+	
+}
