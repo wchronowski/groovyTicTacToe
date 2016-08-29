@@ -1,3 +1,0 @@
-enum PossibileBoardValues {
-    X, O, NONE
-}

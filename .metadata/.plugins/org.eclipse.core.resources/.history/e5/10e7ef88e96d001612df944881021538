@@ -1,5 +1,0 @@
-package symbols;
-
-enum PossibileBoardValues {
-    X, O, NONE
-}

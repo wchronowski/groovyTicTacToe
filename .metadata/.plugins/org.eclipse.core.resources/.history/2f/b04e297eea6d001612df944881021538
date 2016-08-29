@@ -1,5 +1,0 @@
-package symbols
-
-enum BoardValue {
-    X, O, NONE
-}
