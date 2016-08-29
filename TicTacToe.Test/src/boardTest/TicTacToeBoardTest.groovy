@@ -46,6 +46,20 @@ public class TicTacToeBoardTest {
 	}
 	
 	@Test
+	void Cant_Override_Value_On_TicTacToeBoard(){
+		def ticTacToeBoard = new TicTacToeBoard()
+		for(boardRow in ticTacToeBoard.gameBoard)
+			for(boardRowValue in boardRow)
+				assert boardRowValue == BoardValue.NONE
+		
+		def newBoard = ticTacToeBoard.setBoardPositon(1,1, BoardValue.X)
+		assert  newBoard.gameBoard[1][1] ==  BoardValue.X
+		
+		def editNewBoard = newBoard.setBoardPositon(1,1, BoardValue.O)
+		assert editNewBoard == null
+	}
+	
+	@Test
 	void Get_TicTacToeBoardValue() {
 		def ticTacToeBoard = new TicTacToeBoard()
 		ticTacToeBoard.gameBoard[1][0] = BoardValue.O

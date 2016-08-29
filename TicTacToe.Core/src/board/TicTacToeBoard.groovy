@@ -21,6 +21,8 @@ class TicTacToeBoard {
 	
 	TicTacToeBoard setBoardPositon(rowIndex, columnIndex, newBoardValue) {
 		def newBoard = new TicTacToeBoard(this)
+		if(newBoard.gameBoard[rowIndex][columnIndex] != BoardValue.NONE)
+			return null
 		newBoard.gameBoard[rowIndex][columnIndex] = newBoardValue
 		newBoard
 	}
