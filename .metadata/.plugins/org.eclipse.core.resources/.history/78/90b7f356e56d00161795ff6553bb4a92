@@ -1,0 +1,8 @@
+package util
+
+class Hello {
+	private hi
+	Hello() {
+		hi = "Hello"
+	}
+}
