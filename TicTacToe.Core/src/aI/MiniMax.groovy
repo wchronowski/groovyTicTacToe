@@ -1,0 +1,5 @@
+package aI
+
+class MiniMax {
+
+}

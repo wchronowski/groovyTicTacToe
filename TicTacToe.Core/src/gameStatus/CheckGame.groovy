@@ -2,28 +2,26 @@ package gameStatus
 import gameValues.*
 
 class CheckGame {
-	def ticTacToeBoard
-	CheckGame(ticTacToeBoard) {
-		this.ticTacToeBoard = ticTacToeBoard
-	}
 	
-	public CurrentGameStatus() {
-		if(CheckForVictory(BoardValue.X))
+	static currentGameStatus(ticTacToeBoard) {
+		if(checkForVictory(BoardValue.X, ticTacToeBoard))
 			VictoryValue.X
-		else if(CheckForVictory(BoardValue.O))
+		else if(checkForVictory(BoardValue.O, ticTacToeBoard))
 			VictoryValue.O
-		else if(CheckForTie())
+		else if(checkForTie(ticTacToeBoard))
 			VictoryValue.TIE
 		else
 			VictoryValue.ONGOING
 	}
 	
-	private CheckForVictory(boradValue) {
-		RowVictory(boradValue) || ColumnVictory(boradValue) || DiagonalVictory(boradValue)
+	private static checkForVictory(boradValue, ticTacToeBoard) {
+		rowVictory(boradValue, ticTacToeBoard) || 
+		columnVictory(boradValue, ticTacToeBoard) ||
+		diagonalVictory(boradValue, ticTacToeBoard)
 	}
 	
-	private CheckForTie() {
-		for(boardRowValues in this.ticTacToeBoard) {
+	private static checkForTie(ticTacToeBoard) {
+		for(boardRowValues in ticTacToeBoard.gameBoard) {
 			for(boardValue in boardRowValues)
 				if(boardValue.is(BoardValue.NONE))
 					return false
@@ -31,38 +29,43 @@ class CheckGame {
 		true
 	}
 	
-	private DiagonalVictory(boradValue) {
-		CheckForDiagonalVictory(0, 1, 2, boradValue) || CheckForDiagonalVictory(2, 1, 0, boradValue)
+	private static diagonalVictory(boradValue, ticTacToeBoard) {
+		checkForDiagonalVictory(0, 1, 2, boradValue, ticTacToeBoard) || 
+		checkForDiagonalVictory(2, 1, 0, boradValue, ticTacToeBoard)
 	}
 	
-	private CheckForDiagonalVictory(startIndex, middleIndex, endIndex, boradValue) {
-		this.ticTacToeBoard[0][startIndex].is(boradValue) &&
-		this.ticTacToeBoard[1][middleIndex].is(boradValue) &&
-		this.ticTacToeBoard[2][endIndex].is(boradValue)
+	private static checkForDiagonalVictory(startIndex, middleIndex, endIndex, boradValue, ticTacToeBoard) {
+		getBoardPostion(ticTacToeBoard, 0, startIndex).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, 1, middleIndex).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, 2, endIndex).is(boradValue)
 	}
 	
-	private ColumnVictory(boradValue) {
-		CheckForColumnVictory(boradValue, 0) ||
-		CheckForColumnVictory(boradValue, 1) ||
-		CheckForColumnVictory(boradValue, 2)
+	private static columnVictory(boradValue, ticTacToeBoard) {
+		checkForColumnVictory(boradValue, 0, ticTacToeBoard) ||
+		checkForColumnVictory(boradValue, 1, ticTacToeBoard) ||
+		checkForColumnVictory(boradValue, 2, ticTacToeBoard)
 	}
 	
-	private CheckForColumnVictory (boradValue, columnIndex) {
-		this.ticTacToeBoard[0][columnIndex].is(boradValue) &&
-		this.ticTacToeBoard[1][columnIndex].is(boradValue) &&
-		this.ticTacToeBoard[2][columnIndex].is(boradValue)
+	private static checkForColumnVictory (boradValue, columnIndex, ticTacToeBoard) {
+		getBoardPostion(ticTacToeBoard, 0, columnIndex).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, 1, columnIndex).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, 2, columnIndex).is(boradValue)
 	}
 	
-	private RowVictory(boradValue) {
-		CheckForRowVictory(boradValue, 0) ||
-		CheckForRowVictory(boradValue, 1) ||
-		CheckForRowVictory(boradValue, 2)
+	private static rowVictory(boradValue, ticTacToeBoard) {
+		checkForRowVictory(boradValue, 0, ticTacToeBoard) ||
+		checkForRowVictory(boradValue, 1, ticTacToeBoard) ||
+		checkForRowVictory(boradValue, 2, ticTacToeBoard)
 	}
 	
-	private CheckForRowVictory(boradValue, rowIndex) {
-		this.ticTacToeBoard[rowIndex][0].is(boradValue) &&
-		this.ticTacToeBoard[rowIndex][1].is(boradValue) &&
-		this.ticTacToeBoard[rowIndex][2].is(boradValue)
+	private static checkForRowVictory(boradValue, rowIndex, ticTacToeBoard) {
+		getBoardPostion(ticTacToeBoard, rowIndex , 0).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, rowIndex, 1).is(boradValue) &&
+		getBoardPostion(ticTacToeBoard, rowIndex, 2).is(boradValue)
+	}
+	
+	private static getBoardPostion(ticTacToeBoard, row, column) {
+		ticTacToeBoard.getBoardPositon(row, column)
 	}
 	
 }
