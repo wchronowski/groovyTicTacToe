@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>TicTacToe.Test</name>
+	<name>TicTacToe.UI</name>
 	<comment></comment>
 	<projects>
 		<project>TicTacToe.Core</project>
-		<project>TicTacToe.UI</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
