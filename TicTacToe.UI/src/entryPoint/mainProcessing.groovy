@@ -14,7 +14,7 @@ class mainProcessing {
 			println BoardTranslator.translateToString(game)
 			println "Pick Value: "
 			def (chosenRow, chosenColumn) = UserInputToBoardInput.covert(System.in.newReader().readLine())
-			game.gameBoard[chosenRow][chosenColumn] = BoardValue.O
+			game = game.setBoardPositon(chosenRow, chosenColumn, BoardValue.O)
 			if(!(CheckGame.currentGameStatus(game) != VictoryValue.ONGOING))
 			game = ai.MakeMove(game)
 		}
