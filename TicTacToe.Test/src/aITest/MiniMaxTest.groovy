@@ -16,7 +16,6 @@ public class MiniMaxTest {
 				nextMove(startingBoard, humanRowStart, humanColumnStart, ai)
 			}
 		}
-		assert 1 == 1
 	}
 
 	private nextMove(currentBoard, humanChoosenRow, humanChoosenColumn, aiBot) {
@@ -68,5 +67,6 @@ public class MiniMaxTest {
 
 	private testHumanDidNotWin(ticTacToeBoard) {
 		assert CheckGame.currentGameStatus(ticTacToeBoard) != VictoryValue.O
+		assert CheckGame.currentGameStatus(ticTacToeBoard) == VictoryValue.X || VictoryValue.TIE
 	}
 }
