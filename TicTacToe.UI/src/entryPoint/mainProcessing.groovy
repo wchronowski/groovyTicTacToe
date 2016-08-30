@@ -18,7 +18,7 @@ class mainProcessing {
 			if(!(CheckGame.currentGameStatus(game) != VictoryValue.ONGOING))
 			game = ai.MakeMove(game)
 		}
-		println(CheckGame.currentGameStatus(game))
+		println CheckGame.currentGameStatus(game)
 		println BoardTranslator.translateToString(game)
 	}
 
