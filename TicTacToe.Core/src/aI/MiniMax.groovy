@@ -4,6 +4,10 @@ import gameValues.*
 import gameStatus.CheckGame
 import gameValues.VictoryValue
 
+enum ScoreSearchInformation {
+	SCORE, ROW_COLUMN
+}
+
 enum MiniOrMax {
 	MINI, MAX
 }
@@ -12,10 +16,10 @@ class MiniMax {
 	final HIGHEST_WINNING_SCORE = 10
 	final LOWEST_LOSING_SCORE = -10
 	final TIE = 0
-	final COMPARE_FOR_MIN = {currentScore, score -> currentScore >= score ? score : currentScore}
-	final COMPARE_FOR_MAX = {currentScore, score -> currentScore <= score ? score : currentScore}
+	final COMPARE_FOR_MIN = {currentScore, newScore -> currentScore >= newScore}
+	final COMPARE_FOR_MAX = {currentScore, newScore -> currentScore <= newScore}
 	
-	public MakeMove(TicTacToeBoard ticTacToeBoard) {
+	public makeMove(TicTacToeBoard ticTacToeBoard) {
 		def score = [[null, null, null], [null, null, null], [null, null, null]]
 		for(row in 0..2) {
 			for(column in 0..2) {
@@ -26,31 +30,31 @@ class MiniMax {
 	}
 	
 	private aiPick(score, TicTacToeBoard ticTacToeBoard) {
-		def maxScore = LOWEST_LOSING_SCORE
-		def maxColumn = -1
-		def maxRow = -1
-		for(row in 0..2) {
-			for(column in 0..2) {
-				if(score[row][column] != null && maxScore <= score[row][column]) {
-					maxScore = score[row][column]
-					maxColumn = column
-					maxRow = row
-				}
-			}
-		}
+		def maxRow, maxColumn
+		(maxRow, maxColumn) = findScoreInformationWithCompare(score, LOWEST_LOSING_SCORE, COMPARE_FOR_MAX, ScoreSearchInformation.ROW_COLUMN)
 		ticTacToeBoard.setBoardPositon(maxRow, maxColumn, BoardValue.X)
 	}
 	
-	private findScoreWithCompare(scores, startingScore, compareFn) {
+	private findScoreInformationWithCompare(scores, startingScore, compareFn, scoreSearchInformation) {
 		def score = startingScore
+		def scoreRow = -1
+		def scoreColumn = -1
 		for(row in 0..2) {
 			for(column in 0..2) {
-				if(scores[row][column] != null) {
-					score = compareFn(score, scores[row][column])
-				}
+				(score, scoreRow, scoreColumn) =  setScoreRowAndColumn(score, scoreRow, scoreColumn, scores, row, column, compareFn)
 			}
 		}
-		score
+		scoreSearchInformation == ScoreSearchInformation.SCORE ? score : [scoreRow, scoreColumn]
+	}
+	
+	private setScoreRowAndColumn(score, scoreRow, scoreColumn, scores, row, column, compareFn) {
+		if(scores[row][column] == null) {
+			return [score, scoreRow, scoreColumn]
+		}
+		if(compareFn(score, scores[row][column]))
+			return [scores[row][column], row, column]
+		else
+			return [score, scoreRow, scoreColumn]
 	}
 	
 	private processMiniMax(TicTacToeBoard ticTacToeBoard, depth, miniOrMax) {
@@ -60,6 +64,13 @@ class MiniMax {
 		if(!currentGameScore.is(VictoryValue.ONGOING)) {
 			return gameScore(currentGameScore, depth, miniOrMax)
 		}
+		def scores = scoreEachMove(ticTacToeBoard, depth, miniOrMax)
+		def (startingScore, compare) = miniOrMax == MiniOrMax.MAX ? [LOWEST_LOSING_SCORE, COMPARE_FOR_MAX] 
+									                   			  : [HIGHEST_WINNING_SCORE, COMPARE_FOR_MIN]
+		findScoreInformationWithCompare(scores, startingScore, compare, ScoreSearchInformation.SCORE)
+	}
+	
+	private scoreEachMove(TicTacToeBoard ticTacToeBoard, depth, miniOrMax) {
 		def scores = [[null, null, null], [null, null, null], [null, null, null]]
 		for(row in 0..2) {
 			for(column in 0..2) {
@@ -68,9 +79,7 @@ class MiniMax {
 					processMiniMax(ticTacToeBoard.setBoardPositon(row, column, BoardValue.O), depth + 1, MiniOrMax.MAX)
 			}
 		}
-		def (startingScore, compare) = miniOrMax == MiniOrMax.MAX ? [LOWEST_LOSING_SCORE, COMPARE_FOR_MAX] 
-									                   			  : [HIGHEST_WINNING_SCORE, COMPARE_FOR_MIN]
-		findScoreWithCompare(scores, startingScore, compare)
+		scores
 	}
 	
 	private gameScore(currentGameScore, depth, miniOrMax) {

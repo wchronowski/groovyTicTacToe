@@ -31,7 +31,7 @@ class MainProcessing {
 	
 	static aIMakesMove(game, ai) {
 		if(CheckGame.currentGameStatus(game) == VictoryValue.ONGOING)
-			ai.MakeMove(game)
+			ai.makeMove(game)
 		else
 			game
 	}
