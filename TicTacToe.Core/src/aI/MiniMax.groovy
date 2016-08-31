@@ -19,7 +19,7 @@ class MiniMax {
 		def score = [[null, null, null], [null, null, null], [null, null, null]]
 		for(row in 0..2) {
 			for(column in 0..2) {
-				score[row][column] = processMiniMax(ticTacToeBoard.setBoardPositon(row, column, BoardValue.X), 0, MiniOrMax.MINI)
+				score[row][column] = processMiniMax(ticTacToeBoard.setBoardPositon(row, column, BoardValue.X), 1, MiniOrMax.MINI)
 			}
 		}
 		aiPick(score, ticTacToeBoard)
