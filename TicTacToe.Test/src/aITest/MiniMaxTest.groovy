@@ -27,6 +27,17 @@ public class MiniMaxTest {
 		}
 	}
 	
+	@Test
+	void Play_Every_Possabile_Game() {
+		def startingBoard = new TicTacToeBoard()
+		def ai = new MiniMax();
+		for(humanRowStart in 0..2) {
+			for(humanColumnStart in 0..2) {
+				nextMove(startingBoard, humanRowStart, humanColumnStart, ai)
+			}
+		}
+	}
+	
 	private nextMove(currentBoard, humanChoosenRow, humanChoosenColumn, aiBot) {
 		def boardWithMoves = currentBoard.setBoardPositon(humanChoosenRow, humanChoosenColumn, BoardValue.O)
 		if(!boardWithMoves)
