@@ -5,7 +5,7 @@ import gameStatus.CheckGame
 import gameValues.VictoryValue
 
 enum ScoreSearchInformation {
-	SCORE, ROW_COLUMN
+	SCORE, ROW_AND_COLUMN
 }
 
 enum MiniOrMax {
@@ -31,7 +31,7 @@ class MiniMax {
 	
 	private aiPick(score, TicTacToeBoard ticTacToeBoard) {
 		def maxRow, maxColumn
-		(maxRow, maxColumn) = findScoreInformationWithCompare(score, LOWEST_LOSING_SCORE, COMPARE_FOR_MAX, ScoreSearchInformation.ROW_COLUMN)
+		(maxRow, maxColumn) = findScoreInformationWithCompare(score, LOWEST_LOSING_SCORE, COMPARE_FOR_MAX, ScoreSearchInformation.ROW_AND_COLUMN)
 		ticTacToeBoard.setBoardPositon(maxRow, maxColumn, BoardValue.X)
 	}
 	

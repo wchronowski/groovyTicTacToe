@@ -28,7 +28,7 @@ class TicTacToeBoard {
 	}
 	
 	BoardValue getBoardPositon(rowIndex, columnIndex) {
-		return this.gameBoard[rowIndex][columnIndex]
+		this.gameBoard[rowIndex][columnIndex]
 	}
 	
 	private void copyArray(gameBoard) {
