@@ -1,7 +1,7 @@
 package boardTranslate
 
 class UserInputToBoardInput {
-	static covert(userInput) {
+	static convert (userInput) {
 		if(!userInput.isInteger())
 			return [null, null]
 		def cleanUserInput = userInput.toInteger()

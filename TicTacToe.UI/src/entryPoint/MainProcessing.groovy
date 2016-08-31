@@ -14,7 +14,7 @@ class MainProcessing {
 		while(!(CheckGame.currentGameStatus(game) != VictoryValue.ONGOING)) {
 			println BoardTranslator.translateToString(game)
 			println "Pick Value: "
-			def (chosenRow, chosenColumn) = UserInputToBoardInput.covert(System.in.newReader().readLine())
+			def (chosenRow, chosenColumn) = UserInputToBoardInput.convert(System.in.newReader().readLine())
 			game = setHumanAndAiMove(chosenRow, chosenColumn, game, ai)
 		}
 		println VictoryValueTranslator.getWinner(game)
