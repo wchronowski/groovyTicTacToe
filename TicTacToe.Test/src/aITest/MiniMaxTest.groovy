@@ -19,7 +19,7 @@ public class MiniMaxTest {
 							   [ BoardValue.O, BoardValue.NONE, BoardValue.O ]]
 		
 		def ai = new MiniMax();
-		def aiEditBoard = ai.MakeMove(new TicTacToeBoard(exampleTicTacToeBoard))
+		def aiEditBoard = ai.makeMove(new TicTacToeBoard(exampleTicTacToeBoard))
 		for(row in 0..2) {
 			for(column in 0..2) {
 				assert aiEditBoard.gameBoard[row][column] == correctEndBoard[row][column]
@@ -46,7 +46,7 @@ public class MiniMaxTest {
 			testHumanDidNotWin(boardWithMoves)
 			return
 		}
-		boardWithMoves = aiBot.MakeMove(boardWithMoves)
+		boardWithMoves = aiBot.makeMove(boardWithMoves)
 		if(gameOver(boardWithMoves)) {
 			testHumanDidNotWin(boardWithMoves)
 			return

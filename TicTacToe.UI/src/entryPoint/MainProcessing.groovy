@@ -13,7 +13,7 @@ class MainProcessing {
 		def ai = new MiniMax()
 		while(!(CheckGame.currentGameStatus(game) != VictoryValue.ONGOING)) {
 			println BoardTranslator.translateToString(game)
-			println "Pick Value: "
+			println "Pick Position: "
 			def (chosenRow, chosenColumn) = UserInputToBoardInput.convert(System.in.newReader().readLine())
 			game = setHumanAndAiMove(chosenRow, chosenColumn, game, ai)
 		}
@@ -31,7 +31,7 @@ class MainProcessing {
 	
 	static aIMakesMove(game, ai) {
 		if(CheckGame.currentGameStatus(game) == VictoryValue.ONGOING)
-			ai.MakeMove(game)
+			ai.makeMove(game)
 		else
 			game
 	}
