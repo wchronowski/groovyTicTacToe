@@ -65,6 +65,7 @@ public class MiniMaxTest {
 
 	private testHumanDidNotWin(ticTacToeBoard) {
 		assert CheckGame.currentGameStatus(ticTacToeBoard) != VictoryValue.O
-		assert CheckGame.currentGameStatus(ticTacToeBoard) == VictoryValue.X || VictoryValue.TIE
+		assert (CheckGame.currentGameStatus(ticTacToeBoard) == VictoryValue.X) || 
+			   (CheckGame.currentGameStatus(ticTacToeBoard) == VictoryValue.TIE)
 	}
 }
