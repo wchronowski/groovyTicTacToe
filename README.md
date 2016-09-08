@@ -10,6 +10,12 @@ Goto Help -> Eclipse Marketplace -> Search
 Type: Groovy 
 Install Groovy-Eclipse for Indigo 2.7.1, and Grrovy-Eclipse for Juno 2.7.1
 
+if install fails do:
+
+Help -> install new software
+Paste http://dist.springsource.org/snapshot/GRECLIPSE/e4.6/ in URL
+download and install everything
+
 Restart Eclipse
 
 Running the test:
