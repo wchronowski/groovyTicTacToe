@@ -1,8 +1,9 @@
 # groovyTicTacToe
-1) Download eclipse neon
-https://www.eclipse.org/neon/
+1) Install Java
+--Most up to date version
 
-2) Install Java
+2) Download eclipse neon
+https://www.eclipse.org/neon/
 
 3) Open eclipse
 Goto Help -> Eclipse Marketplace -> Search
