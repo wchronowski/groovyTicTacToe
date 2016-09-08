@@ -2,7 +2,9 @@
 1) Download eclipse neon
 https://www.eclipse.org/neon/
 
-2) Open eclipse
+2) Install Java
+
+3) Open eclipse
 Goto Help -> Eclipse Marketplace -> Search
 Type: Groovy 
 Install Groovy-Eclipse for Indigo 2.7.1, and Grrovy-Eclipse for Juno 2.7.1
